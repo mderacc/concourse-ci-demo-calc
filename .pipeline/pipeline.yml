@@ -5,17 +5,17 @@ resources:
     branch: master
     uri: https://github.com/mderacc/concourse-ci-demo-calc
 jobs:
-- name: test-job
+- name: test
   plan:
     - get: calc-git-resource
       trigger: true
     - task: unit-test
       file: calc-git-resource/.pipeline/tasks/unit-test-task.yml
-- name: build-job
+- name: build
   plan:
     - get: calc-git-resource
       passed: 
-        - test-job
+        - test
       trigger: true
     - task: unit-test
       file: calc-git-resource/.pipeline/tasks/build-task.yml
