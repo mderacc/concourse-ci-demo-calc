@@ -1,0 +1,15 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: maven
+inputs:
+  - name: calc-git-resource
+run:
+  path: sh
+  args:
+  - -exc
+  - |
+    cd calc-git-resource
+    mvn test

@@ -1,0 +1,22 @@
+resources:
+- name: calc-git-resource
+  type: git
+  source:
+    branch: master
+    uri: https://github.com/mderacc/concourse-demo-calc
+jobs:
+- name: test
+  plan:
+    - get: calc-git-resource
+      trigger: true
+    - task: unit-test
+      file: concourse-ci-demo-calc/.pipeline/tasks/unit-test-task.yml
+- name: build
+  plan:
+    - get: calc-git-resource
+      trigger: true
+      passed: ['test']
+    - task: unit-test
+      file: concourse-ci-demo-calc/.pipeline/tasks/build.yml
+    - task: unit-test
+      file: concourse-ci-demo-calc/.pipeline/tasks/upload.yml
