@@ -1,5 +1,5 @@
 # Register pipeline
 sudo fly -t tutorial set-pipeline -p calc-pipeline -c .pipeline/pipeline.yml
 
-# Launch pipeline (manually)
+# Launch pipeline
 sudo fly -t tutorial trigger-job -j calc-pipeline/test

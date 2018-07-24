@@ -17,7 +17,7 @@ jobs:
       passed: 
         - test-job
       trigger: true
-    - task: unit-test
+    - task: build
       file: calc-git-resource/.pipeline/tasks/build-task.yml
-    - task: unit-test
+    - task: promote
       file: calc-git-resource/.pipeline/tasks/upload-task.yml
